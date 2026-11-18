@@ -1,0 +1,24 @@
+name: UST tests
+
+on:
+  pull_request:
+  push:
+
+permissions:
+  contents: read
+
+jobs:
+  paper-research:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Run credential-free paper and research tests
+        working-directory: research/scripts
+        run: |
+          python3 -m unittest \
+            test_e1_closure \
+            test_session_context \
+            test_strategy_set_v1 \
+            test_strategy_review_replay \
+            test_trade_metrics
